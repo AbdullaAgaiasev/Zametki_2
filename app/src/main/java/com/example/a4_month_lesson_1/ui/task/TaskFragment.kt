@@ -9,7 +9,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import com.example.a4_month_lesson_1.databinding.FragmentTaskBinding
-import com.example.a4_month_lesson_1.ui.Task
+import com.example.a4_month_lesson_1.model.Task
 
 class TaskFragment : Fragment() {
 

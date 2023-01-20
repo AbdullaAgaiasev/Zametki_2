@@ -27,4 +27,14 @@
         android:name="com.example.a4_month_lesson_1.ui.task.TaskFragment"
         android:label="Task"
         tools:layout="@layout/fragment_task" />
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.example.a4_month_lesson_1.ui.profile.ProfileFragment"
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/onBoardingFragment"
+        android:name="com.example.a4_month_lesson_1.ui.onBoarding.OnBoardingFragment"
+        android:label="fragment_on_boarding"
+        tools:layout="@layout/fragment_on_boarding" />
 </navigation>
