@@ -10,12 +10,15 @@
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-    
+
     <me.relex.circleindicator.CircleIndicator3
         android:id="@+id/indicator"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         app:ci_drawable="@drawable/ic_circle_selected"
-        app:ci_drawable_unselected="@drawable/ic_circle_unselected"/>
+        app:ci_drawable_unselected="@drawable/ic_circle_unselected"
+        android:gravity="bottom"
+        android:layout_marginTop="666dp"
+        android:layout_marginBottom="64dp"/>
 
 </FrameLayout>
