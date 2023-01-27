@@ -1,7 +1,13 @@
 package com.example.a4_month_lesson_1
 
 import android.annotation.SuppressLint
+import android.icu.text.CaseMap.Title
 import android.os.Bundle
+import android.util.EventLogTags.Description
+import android.view.Gravity
+import android.view.View
+import android.widget.Button
+import androidx.appcompat.app.AlertDialog
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -19,9 +25,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var pref: Pref
 
-    @SuppressLint("SuspiciousIndentation")
+    @SuppressLint("SuspiciousIndentation", "WrongViewCast", "MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

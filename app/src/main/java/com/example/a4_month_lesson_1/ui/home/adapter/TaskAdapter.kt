@@ -2,13 +2,14 @@ package com.example.a4_month_lesson_1.ui.home.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
+import android.view.View.OnLongClickListener
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.a4_month_lesson_1.databinding.ItemTaskBinding
 import com.example.a4_month_lesson_1.model.Task
 
-class TaskAdapter: Adapter<TaskAdapter.TaskViewHolder>() {
+class TaskAdapter(private val onLongClick: (Task) -> Unit ): Adapter<TaskAdapter.TaskViewHolder>() {
 
     private val data = arrayListOf<Task>()
 
@@ -16,6 +17,12 @@ class TaskAdapter: Adapter<TaskAdapter.TaskViewHolder>() {
     fun addTask(task: Task) {
         data.add(0,task)
         notifyItemChanged(0)
+    }
+
+    fun addTasks(list: List<Task>) {
+        data.clear()
+        data.addAll(list)
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
@@ -36,6 +43,11 @@ class TaskAdapter: Adapter<TaskAdapter.TaskViewHolder>() {
         fun bind(task: Task) {
             binding.tvTitle.text = task.title
             binding.tvDesc.text = task.desc
+
+            itemView.setOnLongClickListener {
+                onLongClick(task)
+                false
+            }
         }
 
     }
