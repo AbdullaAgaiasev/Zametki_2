@@ -22,7 +22,6 @@ class HomeFragment : Fragment() {
 //    private val builder =  AlertDialog.Builder(requireContext())
     private lateinit var adapter: TaskAdapter
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         adapter = TaskAdapter(this::onLongClick)
@@ -54,7 +53,6 @@ class HomeFragment : Fragment() {
         binding?.fab?.setOnClickListener {
             findNavController().navigate(R.id.taskFragment)
         }
-
     }
 
     private fun setData(){
@@ -64,14 +62,15 @@ class HomeFragment : Fragment() {
 
     private fun onLongClick(task: Task) {
         val alertDialog = AlertDialog.Builder(requireContext())
-        alertDialog.setTitle("Do you want to delete")
-        alertDialog.setNegativeButton("No", object : DialogInterface.OnClickListener{
+        alertDialog.setTitle("Удалить?")
+        alertDialog.setNegativeButton("Нет", object : DialogInterface.OnClickListener {
             override fun onClick(dialog: DialogInterface?, which: Int) {
                 dialog?.cancel()
             }
+
         })
 
-        alertDialog.setPositiveButton("Yes", object : DialogInterface.OnClickListener{
+        alertDialog.setPositiveButton("Да", object : DialogInterface.OnClickListener {
             override fun onClick(dialog: DialogInterface?, which: Int) {
                 App.db.taskDao().delete(task)
                 setData()
@@ -79,7 +78,6 @@ class HomeFragment : Fragment() {
         })
         alertDialog.create().show()
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

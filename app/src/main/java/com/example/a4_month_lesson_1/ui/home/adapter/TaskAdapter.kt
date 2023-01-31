@@ -10,7 +10,6 @@ import com.example.a4_month_lesson_1.databinding.ItemTaskBinding
 import com.example.a4_month_lesson_1.model.Task
 
 class TaskAdapter(private val onLongClick: (Task) -> Unit ): Adapter<TaskAdapter.TaskViewHolder>() {
-
     private val data = arrayListOf<Task>()
 
     @SuppressLint("NotifyDataSetChanged")
@@ -49,6 +48,5 @@ class TaskAdapter(private val onLongClick: (Task) -> Unit ): Adapter<TaskAdapter
                 false
             }
         }
-
     }
 }

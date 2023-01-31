@@ -5,10 +5,7 @@ import android.content.Context.MODE_PRIVATE
 import android.provider.ContactsContract.Intents.Insert.DATA
 
 class Pref(private val context: Context) {
-
-
     private val pref = context.getSharedPreferences(PREF_NAME, MODE_PRIVATE)
-
 
     fun isUserSeen(): Boolean {
         return pref.getBoolean(SEEN_KEY, false)
@@ -41,7 +38,6 @@ class Pref(private val context: Context) {
     fun getImage(): String {
      return pref.getString(IMAGE_KEY,"").toString()
   }
-
 
     companion object {
         const val PREF_NAME = "Task.pref"

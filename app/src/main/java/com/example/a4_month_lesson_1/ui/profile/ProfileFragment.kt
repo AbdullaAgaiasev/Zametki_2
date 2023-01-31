@@ -51,14 +51,14 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         pref =Pref(requireContext())
 
-        binding.etName.setText(pref.getName())
-        binding.etAge.setText(pref.getAge())
+        binding.edName.setText(pref.getName())
+        binding.edAge.setText(pref.getAge())
         binding.ivImage.loadImage(pref.getImage())
 
         binding.save.setOnClickListener {
 
-            pref.saveName(binding.etName.text.toString())
-            pref.saveAge(binding.etAge.text.toString())
+            pref.saveName(binding.edName.text.toString())
+            pref.saveAge(binding.edAge.text.toString())
         }
         binding.ivImage.setOnClickListener {
             val intent = Intent()

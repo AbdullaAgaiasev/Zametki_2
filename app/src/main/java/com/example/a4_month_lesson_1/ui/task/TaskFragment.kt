@@ -40,8 +40,8 @@ class TaskFragment : Fragment() {
 //                        desc = binding.etDesc.text.toString())
 //            )
 //            )
-            App.db.taskDao().insert(Task(title = binding.etTitle.text.toString(),
-                                         desc = binding.etDesc.text.toString()))
+            App.db.taskDao().insert(Task(title = binding.edTitle.text.toString(),
+                                         desc = binding.edDesc.text.toString()))
             findNavController().navigateUp()
         }
     }

@@ -28,18 +28,15 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("SuspiciousIndentation", "WrongViewCast", "MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        pref = Pref(this)
+//        pref = Pref(this)
         val navView: BottomNavigationView = binding.navView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        if (!pref.isUserSeen())
+//        if (!pref.isUserSeen())
         navController.navigate(R.id.onBoardingFragment)
 
         val appBarConfiguration = AppBarConfiguration(
