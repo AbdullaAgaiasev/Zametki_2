@@ -19,11 +19,13 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.a4_month_lesson_1.data.Pref
 import com.example.a4_month_lesson_1.databinding.ActivityMainBinding
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var pref: Pref
+    private var auth = FirebaseAuth.getInstance()
 
     @SuppressLint("SuspiciousIndentation", "WrongViewCast", "MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,12 +34,15 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        pref = Pref(this)
+        pref = Pref(this)
         val navView: BottomNavigationView = binding.navView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
-//        if (!pref.isUserSeen())
+        if (!pref.isUserSeen())
         navController.navigate(R.id.onBoardingFragment)
+        if (auth.currentUser ==null) {
+            navController.navigate(R.id.authFragment)
+        }
 
         val appBarConfiguration = AppBarConfiguration(
             setOf(

@@ -17,12 +17,15 @@ import com.example.a4_month_lesson_1.MainActivity
 import com.example.a4_month_lesson_1.R
 import com.example.a4_month_lesson_1.databinding.FragmentTaskBinding
 import com.example.a4_month_lesson_1.model.Task
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 
 class TaskFragment : Fragment() {
 
 
     private lateinit var binding: FragmentTaskBinding
+    private val db = Firebase.firestore
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,10 +43,18 @@ class TaskFragment : Fragment() {
 //                        desc = binding.etDesc.text.toString())
 //            )
 //            )
-            App.db.taskDao().insert(Task(title = binding.edTitle.text.toString(),
-                                         desc = binding.edDesc.text.toString()))
-            findNavController().navigateUp()
+            onSave()
+
         }
+    }
+
+    private fun onSave() {
+        val task = Task(
+            title = binding.edTitle.text.toString(),
+            desc = binding.edDesc.text.toString()
+        )
+        App.db.taskDao().insert(task)
+        findNavController().navigateUp()
     }
 
 //    fun setOnLongClickListener() {
