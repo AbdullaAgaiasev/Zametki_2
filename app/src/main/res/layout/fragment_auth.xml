@@ -20,7 +20,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/send"
+        android:id="@+id/send_auth"
         android:layout_width="wrap_content"
         android:text="Send SMS"
         android:layout_gravity="bottom|center"

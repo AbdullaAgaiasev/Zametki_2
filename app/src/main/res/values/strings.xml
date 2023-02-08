@@ -9,4 +9,5 @@
     <string name="get_started">Get Started</string>
     <string name="lable_name">Name</string>
     <string name="label_age">Age</string>
+    <string name="your_web_client_id">web</string>
 </resources>

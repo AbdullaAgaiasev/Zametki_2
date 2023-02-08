@@ -3,6 +3,7 @@ package com.example.a4_month_lesson_1.ui.task
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnLongClickListener
@@ -17,8 +18,10 @@ import com.example.a4_month_lesson_1.MainActivity
 import com.example.a4_month_lesson_1.R
 import com.example.a4_month_lesson_1.databinding.FragmentTaskBinding
 import com.example.a4_month_lesson_1.model.Task
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlin.math.log
 
 
 class TaskFragment : Fragment() {
@@ -53,6 +56,13 @@ class TaskFragment : Fragment() {
             title = binding.edTitle.text.toString(),
             desc = binding.edDesc.text.toString()
         )
+        FirebaseAuth.getInstance().currentUser?.uid?.let {
+            db.collection(it).add(task).addOnSuccessListener {
+                Log.e("ololo", "onSave: success!")
+            }.addOnFailureListener {
+                Log.e("ololo", "onSave: "+ it.message)
+            }
+        }
         App.db.taskDao().insert(task)
         findNavController().navigateUp()
     }
