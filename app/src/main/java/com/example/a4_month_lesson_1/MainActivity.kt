@@ -1,10 +1,12 @@
 package com.example.a4_month_lesson_1
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.icu.text.CaseMap.Title
 import android.os.Bundle
 import android.util.EventLogTags.Description
 import android.view.Gravity
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AlertDialog
@@ -19,7 +21,16 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.a4_month_lesson_1.data.Pref
 import com.example.a4_month_lesson_1.databinding.ActivityMainBinding
+import com.example.a4_month_lesson_1.ui.accept.AcceptFragment
+import com.example.a4_month_lesson_1.ui.auth.AuthFragment
+import com.example.a4_month_lesson_1.ui.home.HomeFragment
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
 
@@ -64,11 +75,45 @@ class MainActivity : AppCompatActivity() {
         )
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             navView.isVisible = bottomNavFragments.contains(destination.id)
-            if (destination.id==R.id.onBoardingFragment) {
+            if (destination.id==R.id.onBoardingFragment||destination.id==R.id.splashFragment) {
                 supportActionBar?.hide()
             } else {
                 supportActionBar?.show()
             }
         }
     }
+
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        when (item.itemId) {
+////            R.id.search -> {
+////                Toast.makeText(this, "Search", Toast.LENGTH_SHORT).show()
+////            }
+////            R.id.settings -> {
+////                Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show()
+////            }
+////            R.id.update -> {
+////                Toast.makeText(this, "Update Profile", Toast.LENGTH_SHORT).show()
+////            }
+//            R.id.btn_log_out -> {
+//                val alert: AlertDialog = AlertDialog.Builder(this).create()
+//                alert.setTitle("Logout")
+//                alert.setMessage("Are you sure you want to logout?")
+//                alert.setButton(AlertDialog.BUTTON_POSITIVE, "Yes") { dialog, which ->
+//                    CoroutineScope(Dispatchers.IO).launch{
+//                        withContext(Dispatchers.Main) {
+//                            Firebase.auth.signOut()
+//                        }
+//                    }
+//                    val intent = Intent(this@MainActivity,AcceptFragment::class.java)
+//                    dialog.dismiss()
+//                    startActivity(intent)
+//                }
+//                alert.setButton(AlertDialog.BUTTON_NEGATIVE, "No") { dialog, which ->
+//                    dialog.dismiss()
+//                }
+//                alert.show()
+//            }
+//        }
+//        return super.onOptionsItemSelected(item)
+//    }
 }

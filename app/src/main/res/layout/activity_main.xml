@@ -34,7 +34,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/mobile_navigation"/>
 
-
+<!--    <Button-->
+<!--        android:id="@+id/btn_sign_out"-->
+<!--        android:layout_width="230dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="-126dp"-->
+<!--        android:layout_marginBottom="20dp"-->
+<!--        android:backgroundTint="@color/purple_200"-->
+<!--        android:text="Log Out"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textSize="20dp"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/nav_view"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/nav_host_fragment_activity_main" />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

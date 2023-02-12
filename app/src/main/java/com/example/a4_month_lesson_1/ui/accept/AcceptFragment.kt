@@ -20,7 +20,6 @@ class AcceptFragment : Fragment() {
     private lateinit var binding: FragmentAcceptBinding
     private lateinit var args: AcceptFragmentArgs
     private lateinit var auth: FirebaseAuth
-//    private var verificationIdGlobal: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

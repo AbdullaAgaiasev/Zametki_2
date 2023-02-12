@@ -32,21 +32,6 @@
             android:hint="Description"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-
-<!--    <EditText-->
-<!--        android:id="@+id/et_title"-->
-<!--        android:hint="Title"-->
-<!--        android:layout_margin="12dp"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"/>-->
-
-<!--    <EditText-->
-<!--        android:id="@+id/et_desc"-->
-<!--        android:hint="Description"-->
-<!--        android:layout_margin="12dp"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"/>-->
-
     <Button
         android:id="@+id/btn_save"
         android:text="Save"

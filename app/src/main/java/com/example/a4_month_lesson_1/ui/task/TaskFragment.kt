@@ -18,7 +18,9 @@ import com.example.a4_month_lesson_1.MainActivity
 import com.example.a4_month_lesson_1.R
 import com.example.a4_month_lesson_1.databinding.FragmentTaskBinding
 import com.example.a4_month_lesson_1.model.Task
+import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlin.math.log
@@ -29,6 +31,7 @@ class TaskFragment : Fragment() {
 
     private lateinit var binding: FragmentTaskBinding
     private val db = Firebase.firestore
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,13 +44,7 @@ class TaskFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.btnSave.setOnClickListener {
-//            setFragmentResult(RESULT_TASK, bundleOf("task" to
-//                    Task(title = binding.etTitle.text.toString(),
-//                        desc = binding.etDesc.text.toString())
-//            )
-//            )
             onSave()
-
         }
     }
 
@@ -56,6 +53,12 @@ class TaskFragment : Fragment() {
             title = binding.edTitle.text.toString(),
             desc = binding.edDesc.text.toString()
         )
+        putTask(task)
+        App.db.taskDao().insert(task)
+        findNavController().navigateUp()
+    }
+
+    private fun putTask(task: Task) {
         FirebaseAuth.getInstance().currentUser?.uid?.let {
             db.collection(it).add(task).addOnSuccessListener {
                 Log.e("ololo", "onSave: success!")
@@ -63,13 +66,7 @@ class TaskFragment : Fragment() {
                 Log.e("ololo", "onSave: "+ it.message)
             }
         }
-        App.db.taskDao().insert(task)
-        findNavController().navigateUp()
     }
-
-//    fun setOnLongClickListener() {
-
-//    }
 
 
 //    companion object{

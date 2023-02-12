@@ -13,10 +13,10 @@ class TaskAdapter(private val onLongClick: (Task) -> Unit ): Adapter<TaskAdapter
     private val data = arrayListOf<Task>()
 
     @SuppressLint("NotifyDataSetChanged")
-    fun addTask(task: Task) {
-        data.add(0,task)
-        notifyItemChanged(0)
-    }
+//    fun addTask(task: Task) {
+//        data.add(0,task)
+//        notifyItemChanged(0)
+//    }
 
     fun addTasks(list: List<Task>) {
         data.clear()
