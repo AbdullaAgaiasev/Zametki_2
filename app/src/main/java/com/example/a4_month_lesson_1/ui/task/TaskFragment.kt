@@ -12,6 +12,7 @@ import android.widget.ImageButton
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.test.core.app.ApplicationProvider
 import com.example.a4_month_lesson_1.App
 import com.example.a4_month_lesson_1.MainActivity
@@ -31,6 +32,8 @@ class TaskFragment : Fragment() {
 
     private lateinit var binding: FragmentTaskBinding
     private val db = Firebase.firestore
+    private lateinit var navArg : TaskFragmentArgs
+    private var task: Task? = null
 
 
     override fun onCreateView(
@@ -43,9 +46,32 @@ class TaskFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.btnSave.setOnClickListener {
-            onSave()
+
+        arguments?.let {
+            navArg = TaskFragmentArgs.fromBundle(it)
+            task = navArg.task
         }
+        if (task != null) {
+            binding.edTitle.setText(task?.title)
+            binding.edDesc.setText(task?.desc)
+            binding.btnSave.text = getString(R.string.update)
+        } else {
+            binding.btnSave.text = getString(R.string.save)
+        }
+
+        binding.btnSave.setOnClickListener {
+            if (task != null) {
+                onUpdate()
+
+            } else onSave()
+        }
+    }
+
+    private fun onUpdate() {
+        task?.title = binding.edTitle.text.toString()
+        task?.desc = binding.edDesc.text.toString()
+        task?.let { App.db.taskDao().update(it) }
+        findNavController().navigateUp()
     }
 
     private fun onSave() {

@@ -2,14 +2,13 @@ package com.example.a4_month_lesson_1.ui.home.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View.OnLongClickListener
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.a4_month_lesson_1.databinding.ItemTaskBinding
 import com.example.a4_month_lesson_1.model.Task
 
-class TaskAdapter(private val onLongClick: (Task) -> Unit ): Adapter<TaskAdapter.TaskViewHolder>() {
+class TaskAdapter(private val onLongClick: (Task) -> Unit, private val onClick: (Task) -> Unit): Adapter<TaskAdapter.TaskViewHolder>() {
     private val data = arrayListOf<Task>()
 
     @SuppressLint("NotifyDataSetChanged")
@@ -46,6 +45,9 @@ class TaskAdapter(private val onLongClick: (Task) -> Unit ): Adapter<TaskAdapter
             itemView.setOnLongClickListener {
                 onLongClick(task)
                 false
+            }
+            itemView.setOnClickListener {
+                onClick(task)
             }
         }
     }

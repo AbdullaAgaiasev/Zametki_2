@@ -1,15 +1,8 @@
 package com.example.a4_month_lesson_1
 
 import android.annotation.SuppressLint
-import android.content.Intent
-import android.icu.text.CaseMap.Title
 import android.os.Bundle
-import android.util.EventLogTags.Description
-import android.view.Gravity
-import android.view.MenuItem
-import android.view.View
-import android.widget.Button
-import androidx.appcompat.app.AlertDialog
+import android.util.Log
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -21,24 +14,18 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.a4_month_lesson_1.data.Pref
 import com.example.a4_month_lesson_1.databinding.ActivityMainBinding
-import com.example.a4_month_lesson_1.ui.accept.AcceptFragment
-import com.example.a4_month_lesson_1.ui.auth.AuthFragment
-import com.example.a4_month_lesson_1.ui.home.HomeFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.google.firebase.messaging.FirebaseMessaging
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var pref: Pref
-    private var auth = FirebaseAuth.getInstance()
+    private lateinit var auth:FirebaseAuth
 
-    @SuppressLint("SuspiciousIndentation", "WrongViewCast", "MissingInflatedId")
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -46,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         pref = Pref(this)
+        auth = FirebaseAuth.getInstance()
         val navView: BottomNavigationView = binding.navView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
@@ -64,7 +52,9 @@ class MainActivity : AppCompatActivity() {
                 R.id.taskFragment
             )
         )
-
+        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+            Log.e("ololo", "onCreate: "+ task.result)
+        }
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
         val bottomNavFragments = arrayListOf(
@@ -82,38 +72,4 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        when (item.itemId) {
-////            R.id.search -> {
-////                Toast.makeText(this, "Search", Toast.LENGTH_SHORT).show()
-////            }
-////            R.id.settings -> {
-////                Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show()
-////            }
-////            R.id.update -> {
-////                Toast.makeText(this, "Update Profile", Toast.LENGTH_SHORT).show()
-////            }
-//            R.id.btn_log_out -> {
-//                val alert: AlertDialog = AlertDialog.Builder(this).create()
-//                alert.setTitle("Logout")
-//                alert.setMessage("Are you sure you want to logout?")
-//                alert.setButton(AlertDialog.BUTTON_POSITIVE, "Yes") { dialog, which ->
-//                    CoroutineScope(Dispatchers.IO).launch{
-//                        withContext(Dispatchers.Main) {
-//                            Firebase.auth.signOut()
-//                        }
-//                    }
-//                    val intent = Intent(this@MainActivity,AcceptFragment::class.java)
-//                    dialog.dismiss()
-//                    startActivity(intent)
-//                }
-//                alert.setButton(AlertDialog.BUTTON_NEGATIVE, "No") { dialog, which ->
-//                    dialog.dismiss()
-//                }
-//                alert.show()
-//            }
-//        }
-//        return super.onOptionsItemSelected(item)
-//    }
 }

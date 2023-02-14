@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -66,13 +67,12 @@ class ProfileFragment : Fragment() {
             pref.saveName(binding.edName.text.toString())
             pref.saveAge(binding.edAge.text.toString())
         }
-        binding.btnLogOut.setOnClickListener {
 
+        binding.btnLogOut.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             findNavController().navigate(R.id.onBoardingFragment)
             auth.currentUser == null
             findNavController().navigate(R.id.authFragment)
-            
         }
         binding.ivImage.setOnClickListener {
             val intent = Intent()

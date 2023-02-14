@@ -10,4 +10,6 @@
     <string name="lable_name">Name</string>
     <string name="label_age">Age</string>
     <string name="your_web_client_id">web</string>
+    <string name="update">update</string>
+    <string name="save">save</string>
 </resources>
